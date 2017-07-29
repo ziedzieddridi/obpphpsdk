@@ -14,8 +14,8 @@ $baseUrlSandBox = 'https://apisandbox.openbankproject.com';
 $baseUrl        = $baseUrlSandBox;
 $apiVersion     = 'v1.2';
 
-session_save_path('C:\wamp64\www\session');
-$oauth->disableSSLChecks(); // désactive la verification SSL
+//session_save_path('C:\wamp64\www\session');
+
 session_start();
 
 $obpApiSettings = array(
@@ -35,7 +35,7 @@ $obpApiSettings = array(
 
 $oAuth = new \OAuth( $obpApiSettings['consumer']['key'], $obpApiSettings['consumer']['secret'] );
 $oAuth->enableDebug();  // in case of exception debug $oAuth->debugInfo
-$oauth->disableSSLChecks(); // désactive la verification SSL
+$oauth->disableSSLChecks(); //To avoid the error: (Peer certificate cannot be authenticated with given CA certificates)
 
 
 if ( !isset($_GET['oauthcallback']) || $_GET['oauthcallback'] != 1 || !isset($_GET['oauth_verifier']) ) {
