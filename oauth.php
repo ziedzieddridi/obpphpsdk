@@ -15,6 +15,7 @@ $baseUrl        = $baseUrlSandBox;
 $apiVersion     = 'v1.2';
 
 session_save_path('C:\wamp64\www\session');
+$oauth->disableSSLChecks(); // désactive la verification SSL
 session_start();
 
 $obpApiSettings = array(
@@ -34,6 +35,8 @@ $obpApiSettings = array(
 
 $oAuth = new \OAuth( $obpApiSettings['consumer']['key'], $obpApiSettings['consumer']['secret'] );
 $oAuth->enableDebug();  // in case of exception debug $oAuth->debugInfo
+$oauth->disableSSLChecks(); // désactive la verification SSL
+
 
 if ( !isset($_GET['oauthcallback']) || $_GET['oauthcallback'] != 1 || !isset($_GET['oauth_verifier']) ) {
 	try {
